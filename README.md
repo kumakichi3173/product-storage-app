@@ -1,8 +1,8 @@
 # product-storage-app
 This is my simple MERN app project. 
 
-## Web framework: 
+## Web framework
 Express
 
-## DB:
+## DB
 mongoDB
