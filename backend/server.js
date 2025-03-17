@@ -8,8 +8,11 @@ dotenv.config();
 // call the function
 const app = express();
 
-app.post("/products", async (req, res) => {
-    // user will send this data
+// middleware that allows us to parse the request
+app.use(express.json());
+
+app.post("/api/products", async (req, res) => {
+    // user will send this data and req.body holds the JSON data that has been parsed by the middleware
     const product = req.body;
 
     // if any of these are empty
