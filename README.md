@@ -17,6 +17,10 @@ This is a simple MERN (MongoDB, Express, React, Node.js) app with a modular and 
 
 - **MongoDB**
 
+## Build Tools
+
+- **Vite**
+
 ## UI component library
 
 - **Chakra UI**
