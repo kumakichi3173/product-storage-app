@@ -13,6 +13,10 @@ const PORT = process.env.PORT || 3000;
 // middleware that allows us to parse the request
 app.use(express.json());
 
+app.get("/", (req, res) => {
+    res.send("API is running...");
+});
+
 app.use("/api/products", productRoutes);
 
 app.listen(PORT, () => {
