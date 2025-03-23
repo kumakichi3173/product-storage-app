@@ -14,6 +14,8 @@ export const getProducts = async (req, res) => {
 export const createProduct = async (req, res) => {
     // user will send this data and req.body holds the JSON data that has been parsed by the middleware
     const product = req.body;
+    console.log("Received product:", product);
+    console.log("Type of price:", typeof product.price);
 
     // if any of these are empty
     if (!product.name || !product.price || !product.image) {
