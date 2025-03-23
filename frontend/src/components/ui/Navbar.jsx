@@ -1,14 +1,16 @@
 import { Button, Container, Flex, HStack, Text } from '@chakra-ui/react'
 import React from 'react'
-import { CiSquarePlus } from "react-icons/ci";
 import { Link } from 'react-router-dom'
 import { useColorMode } from './color-mode';
 import { IoMoon } from 'react-icons/io5';
 import { LuSun } from 'react-icons/lu';
+import { PiPlus } from 'react-icons/pi';
+import { useProductStore } from '../../store/product';
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-
+  const { products } = useProductStore()
+  
   return (
     <Container maxW={"1140PX"} px={4}>
       <Flex h={16}
@@ -21,7 +23,7 @@ const Navbar = () => {
       >
         <Text
           color="white"
-          fontSize={{ base: "22", sm: "28" }}
+          // fontSize={{ base: "22", sm: "28" }}
           fontWeight={"bold"}
           textTransform={"uppercase"}
           textAlign={"center"}
@@ -33,7 +35,7 @@ const Navbar = () => {
         <HStack spacing={2} alignItem={"center"}>
           <Link to={"/create"}>
             <Button>
-              <CiSquarePlus fontSize={20} />
+              <PiPlus fontSize={20} />
             </Button>
           </Link>
           <Button onClick={toggleColorMode}>
