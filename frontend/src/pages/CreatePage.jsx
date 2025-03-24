@@ -1,8 +1,6 @@
 import { Box, Button, Container, Heading, Input, VStack } from '@chakra-ui/react'
-import React from 'react'
-import { useColorModeValue } from '../components/ui/color-mode'
 import { useState } from 'react'
-import { useProductStore } from '../store/product'
+import { useColorModeValue } from '../components/ui/color-mode'
 
 const CreatePage = () => {
     const [newProduct, setNewProduct] = useState({
@@ -11,14 +9,29 @@ const CreatePage = () => {
         image: "",
     });
 
-    const { createProduct } = useProductStore()
-
     const handleAddProduct = async () => {
-        const { success, message } = await createProduct(newProduct);
-        console.log("Success:", success);
-        console.log("Message:", message);
-    };
+        try {
+            if (!newProduct.name || !newProduct.image || !newProduct.price) {
+                throw new Error("Error parsing product")
+            }
 
+            const res = await fetch("/api/products", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newProduct),
+            });
+
+            if (!res.ok) {
+                const errorText = await res.text();
+                console.error("Server returned error:", res.status, errorText);
+                throw new Error("Server error");
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    };
 
     return (
         <Container maxW={"container.sm"}>

@@ -1,15 +1,12 @@
-import { Button, Container, Flex, HStack, Text } from '@chakra-ui/react'
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useColorMode } from './color-mode';
+import { Button, Container, Flex, HStack, Text } from '@chakra-ui/react';
 import { IoMoon } from 'react-icons/io5';
 import { LuSun } from 'react-icons/lu';
 import { PiPlus } from 'react-icons/pi';
-import { useProductStore } from '../../store/product';
+import { Link } from 'react-router-dom';
+import { useColorMode } from './color-mode';
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const { products } = useProductStore()
   
   return (
     <Container maxW={"1140PX"} px={4}>
