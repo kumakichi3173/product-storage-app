@@ -4,7 +4,7 @@ import cors from "cors";
 import { connectDB } from './config/db.js';
 
 import productRoutes from "./routes/product.route.js";
-
+// read the contents of .env file into process.env
 dotenv.config();
 
 // call the function
@@ -15,7 +15,7 @@ app.use(cors());
 // middleware that allows us to parse the request
 app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 app.get("/", (req, res) => {
     res.send("API is running...");
