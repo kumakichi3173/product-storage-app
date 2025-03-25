@@ -75,18 +75,21 @@ const CreatePage = () => {
                             name='name'
                             value={newProduct.name}
                             onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
+                            autoComplete="product-name"
                         />
                         <Input
                             placeholder='Price'
                             name='price'
                             value={newProduct.price}
                             onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
+                            autoComplete="price"
                         />
                         <Input
                             placeholder='Image URL'
                             name='image'
                             value={newProduct.image}
                             onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
+                            autoComplete="image"
                         />
                         <Button
                             colorScheme='blue'
