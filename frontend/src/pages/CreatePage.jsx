@@ -1,6 +1,9 @@
-import { Box, Button, Container, Heading, Input, VStack } from '@chakra-ui/react'
+"use client"
+
+import { Box, Button, Container, Heading, Input, VStack, HStack, For } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useColorModeValue } from '../components/ui/color-mode'
+import { toaster, Toaster } from "@/components/ui/toaster"
 
 const CreatePage = () => {
     const [newProduct, setNewProduct] = useState({
@@ -12,7 +15,24 @@ const CreatePage = () => {
     const handleAddProduct = async () => {
         try {
             if (!newProduct.name || !newProduct.image || !newProduct.price) {
-                throw new Error("Error parsing product")
+                toaster.create({
+                    title: "Error",
+                    description: "All fields are required",
+                    status: "error",
+                    duration: 5000,
+                    type: "error",
+                    isClosable: true,
+                });
+                return;
+            } else {
+                toaster.create({
+                    title: "Success",
+                    description: "Data has been successfully updated",
+                    status: "success",
+                    duration: 5000,
+                    type: "success",
+                    isClosable: true,
+                });
             }
 
             const res = await fetch("/api/products", {
@@ -35,6 +55,7 @@ const CreatePage = () => {
 
     return (
         <Container maxW={"container.sm"}>
+            <Toaster />
             <VStack
                 spacing={8}
             >
