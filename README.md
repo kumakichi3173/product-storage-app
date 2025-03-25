@@ -6,8 +6,10 @@ This is a simple MERN (MongoDB, Express, React, Node.js) app with a modular and 
 ## Table of Contents
 1. [Web Framework](#Web-Framework)
 2. [Database](#Database)
-3. [Features](#Database)
-4. [Videos](#Videos)
+3. [Build Tools](#build-tools)
+4. [UI component library](#ui-component-library)
+5. [Features](#Features)
+6. [Videos](#Videos)
 
 ## Web Framework
 
@@ -35,6 +37,12 @@ This is a simple MERN (MongoDB, Express, React, Node.js) app with a modular and 
 
 - **Delete Products:**  
   Users can delete products from the list. Deletion is reflected both in the UI and in the database.
+
+- **Dark Mode/Light Mode:**
+ The application allows you to switch between dark and light themes, providing an optimal viewing experience in different lighting conditions and reducing eye strain.
+
+![Dark Mode](./docs/img/dark-mode.png)
+![Light Mode](./docs/img/light-mode.png)
 
 ## Videos
 
