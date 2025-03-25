@@ -38,10 +38,9 @@ const CreatePage = () => {
             <VStack
                 spacing={8}
             >
-                <Heading as={"h1"} size={"2x1"} textAlign={"center"} mb={8}>
+                <Heading as="h1" size="4xl" textAlign="center" mb={8}>
                     Create New Product
                 </Heading>
-
                 <Box
                     w="full"
                     bg={useColorModeValue("white", "gray.700")}
@@ -79,7 +78,7 @@ const CreatePage = () => {
                     </VStack>
                 </Box>
             </VStack>
-        </Container>
+        </Container >
     )
 }
 
