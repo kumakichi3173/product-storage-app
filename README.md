@@ -39,7 +39,7 @@ This is a simple MERN (MongoDB, Express, React, Node.js) app with a modular and 
   Users can delete products from the list. Deletion is reflected both in the UI and in the database.
 
 - **Dark Mode/Light Mode:**
- The application allows you to switch between dark and light themes, providing an optimal viewing experience in different lighting conditions and reducing eye strain.
+  The application allows you to switch between dark and light themes, providing an optimal viewing experience in different lighting conditions and reducing eye strain.
 
 ![Dark Mode](./docs/img/dark-mode.png)
 ![Light Mode](./docs/img/light-mode.png)
