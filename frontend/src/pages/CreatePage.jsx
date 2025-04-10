@@ -62,7 +62,7 @@ const CreatePage = () => {
             <VStack
                 spacing={8}
             >
-                <Heading as="h1" size="4xl" textAlign="center" mb={8}>
+                <Heading as="h1" fontSize='3xl' textAlign="center" mb={8} fontWeight={"bold"}>
                     Create New Product
                 </Heading>
                 <Box
