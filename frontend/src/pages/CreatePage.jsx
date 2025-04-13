@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Button, Container, Heading, Input, VStack, HStack, For } from '@chakra-ui/react'
+import { Box, Button, Container, Heading, Input, VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useColorModeValue } from '../components/ui/color-mode'
 import { toaster, Toaster } from "@/components/ui/toaster"
@@ -36,7 +36,7 @@ const CreatePage = () => {
             }
 
             // clear the state from the form  
-            setNewProduct({ name:"", price:"", image:""});
+            setNewProduct({ name: "", price: "", image: "" });
 
             const res = await fetch("/api/products", {
                 method: "POST",
@@ -78,21 +78,21 @@ const CreatePage = () => {
                             name='name'
                             value={newProduct.name}
                             onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-                            // autoComplete="off"
+                        // autoComplete="off"
                         />
                         <Input
                             placeholder='Price'
                             name='price'
                             value={newProduct.price}
                             onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
-                            // autoComplete="off"
+                        // autoComplete="off"
                         />
                         <Input
                             placeholder='Image URL'
                             name='image'
                             value={newProduct.image}
                             onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
-                            // autoComplete="off"
+                        // autoComplete="off"
                         />
                         <Button
                             colorScheme='blue'
