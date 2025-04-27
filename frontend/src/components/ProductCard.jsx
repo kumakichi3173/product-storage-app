@@ -6,7 +6,6 @@ import { deleteProduct } from '../stores/deleteProduct';
 
 const ProductCard = ({ id, image, name, price }) => {
     const textColor = useColorModeValue('gray.600', 'gray.200');
-    const colorScheme = useColorModeValue('gray', 'blue');
     const handleDeleteProduct = async (id) => {
         await deleteProduct(id);
     };
