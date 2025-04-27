@@ -21,6 +21,8 @@ export default [
       'react-refresh': reactRefresh,
     },
     rules: {
+      "react/prop-types": "off",
+      "react/jsx-no-target-blank": "off",
       ...js.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
