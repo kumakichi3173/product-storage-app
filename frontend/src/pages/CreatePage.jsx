@@ -70,8 +70,8 @@ const CreatePage = () => {
                     bg={useColorModeValue("white", "gray.700")}
                     p={6}
                     rounded="lg"
-                    shadow="md"
-                >
+                    shadow='lg'
+                    >
                     <VStack spacing={4}>
                         <Input
                             placeholder='Product Name'
