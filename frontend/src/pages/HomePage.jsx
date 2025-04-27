@@ -30,6 +30,7 @@ const HomePage = () => {
           {products.map((product) => (
             <ProductCard
               key={product._id}
+              id={product._id} //key cannot be referenced, which is why this exists separately
               image={product.image}
               name={product.name}
               price={product.price}
