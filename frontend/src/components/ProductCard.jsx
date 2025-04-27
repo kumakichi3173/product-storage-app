@@ -2,34 +2,14 @@ import { Box, Heading, IconButton, HStack, Image, Text } from '@chakra-ui/react'
 import { FiEdit } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import { useColorModeValue } from '../components/ui/color-mode';
+import { deleteProduct } from '../stores/deleteProduct';
 
-// const EditButton = (props) => (
-//   <IconButton
-//     onClick={props.onClick}
-//     icon={<FiEdit />}
-//     variant="ghost"
-//     aria-label="Edit product"
-//     size="sm"
-//     fontSize="20px"
-//     colorScheme={props.colorScheme}
-//   />
-// );
-
-// const DeleteButton = (props) => (
-//   <IconButton
-//     onClick={props.onClick}
-//     icon={<MdDelete />}
-//     variant="ghost"
-//     aria-label="Delete product"
-//     size="sm"
-//     fontSize="20px"
-//     colorScheme={props.colorScheme}
-//   />
-// );
-
-const ProductCard = ({ image, name, price }) => {
+const ProductCard = ({ id, image, name, price }) => {
     const textColor = useColorModeValue('gray.600', 'gray.200');
     const colorScheme = useColorModeValue('gray', 'blue');
+    const handleDeleteProduct = async (id) => {
+        await deleteProduct(id);
+    };
 
     return (
         <Box
@@ -52,18 +32,24 @@ const ProductCard = ({ image, name, price }) => {
                     ${price}
                 </Text>
                 <HStack spacing={2}>
-                <IconButton
-                        icon={<FiEdit />}
+                    {/* TODO: The positon of the icons are not great. Move to top right on the pic */}
+                    <IconButton
+                    // TODO: handleEditProduct(id)}
+                        onClick={() => handleEditProduct(id)}
                         aria-label="Edit"
                         variant="ghost"
                         fontSize="24px"
-                    />
+                    >
+                        <FiEdit />
+                    </IconButton>
                     <IconButton
-                        icon={<MdDelete />}
+                        onClick={() => handleDeleteProduct(id)}
                         aria-label="Delete"
                         variant="ghost"
-                        fontSize="24px" 
-                    />
+                        fontSize="24px"
+                    >
+                        <MdDelete />
+                    </IconButton>
                 </HStack>
             </Box>
         </Box>
