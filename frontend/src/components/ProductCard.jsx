@@ -11,26 +11,27 @@ const ProductCard = ({ id, image, name, price }) => {
     };
 
     return (
-        <Box
-            maxW="450px"
-            maxH="500px"
-            shadow='lg'
-            rounded='lg'
-            overflow='hidden'
-            transition='all 0.3s'
-            _hover={{ transform: "translateY(-5px)", shadow: "xl" }}
-            bg={useColorModeValue("white", "gray.700")}
-        >
-            <Image src={image} alt={name} h={48} w='full' objectFit='cover' />
-            <Box p={4}>
-                <Heading as='h3' size='md' mb={2}>
-                    {name}
-                </Heading>
+        <Box h="100%" p={2}>
+            <Box
+                h="100%"
+                maxW="450px"
+                shadow='lg'
+                rounded='lg'
+                overflow='hidden'
+                transition='all 0.3s'
+                _hover={{ transform: "translateY(-5px)", shadow: "xl" }}
+                bg={useColorModeValue("white", "gray.700")}
+            >
+                <Image src={image} alt={name} h={48} w='full' objectFit='cover' />
+                <Box p={4}>
+                    <Heading as='h3' size='md' mb={2}>
+                        {name}
+                    </Heading>
 
-                <Text fontWeight='bold' fontSize='xl' color={textColor} mb={4}>
-                    ${price}
-                </Text>
-                <HStack spacing={2}>
+                    <Text fontWeight='bold' fontSize='xl' color={textColor} mb={4}>
+                        ${price}
+                    </Text>
+                    <HStack spacing={2}>
                     {/* TODO: The positon of the icons are not great. Move to top right on the pic */}
                     <IconButton
                     // TODO: handleEditProduct(id)}
@@ -39,17 +40,18 @@ const ProductCard = ({ id, image, name, price }) => {
                         variant="ghost"
                         fontSize="24px"
                     >
-                        <FiEdit />
-                    </IconButton>
-                    <IconButton
-                        onClick={() => handleDeleteProduct(id)}
-                        aria-label="Delete"
-                        variant="ghost"
-                        fontSize="24px"
-                    >
-                        <MdDelete />
-                    </IconButton>
-                </HStack>
+                            <FiEdit />
+                        </IconButton>
+                        <IconButton
+                            onClick={() => handleDeleteProduct(id)}
+                            aria-label="Delete"
+                            variant="ghost"
+                            fontSize="24px"
+                        >
+                            <MdDelete />
+                        </IconButton>
+                    </HStack>
+                </Box>
             </Box>
         </Box>
     );
