@@ -21,7 +21,28 @@ const ProductCard = ({ id, image, name, price }) => {
                 transition='all 0.3s'
                 _hover={{ transform: "translateY(-5px)", shadow: "xl" }}
                 bg={useColorModeValue("white", "gray.700")}
+                position="relative"
             >
+                <Box position="absolute" top="2" right="2" zIndex="1">
+                    <HStack spacing={1}>
+                        <IconButton
+                            onClick={() => handleEditProduct(id)}
+                            aria-label="Edit"
+                            fontSize="20px"
+                            variant="ghost"
+                        >
+                            <FiEdit />
+                        </IconButton>
+                        <IconButton
+                            onClick={() => handleDeleteProduct(id)}
+                            aria-label="Delete"
+                            variant="ghost"
+                            fontSize="20px"
+                        >
+                            <MdDelete />
+                        </IconButton>
+                    </HStack>
+                </Box>
                 <Image src={image} alt={name} h={48} w='full' objectFit='cover' />
                 <Box p={4}>
                     <Heading as='h3' size='md' mb={2}>
@@ -31,26 +52,6 @@ const ProductCard = ({ id, image, name, price }) => {
                     <Text fontWeight='bold' fontSize='xl' color={textColor} mb={4}>
                         ${price}
                     </Text>
-                    <HStack spacing={2}>
-                    {/* TODO: The positon of the icons are not great. Move to top right on the pic */}
-                    <IconButton
-                    // TODO: handleEditProduct(id)}
-                        onClick={() => handleEditProduct(id)}
-                        aria-label="Edit"
-                        variant="ghost"
-                        fontSize="24px"
-                    >
-                            <FiEdit />
-                        </IconButton>
-                        <IconButton
-                            onClick={() => handleDeleteProduct(id)}
-                            aria-label="Delete"
-                            variant="ghost"
-                            fontSize="24px"
-                        >
-                            <MdDelete />
-                        </IconButton>
-                    </HStack>
                 </Box>
             </Box>
         </Box>
