@@ -1,4 +1,4 @@
-import { toaster, Toaster } from "@/components/ui/toaster";
+import { toaster } from "@/components/ui/toaster";
 
 export const deleteProduct = async (id) => {
     try {
@@ -29,7 +29,7 @@ export const deleteProduct = async (id) => {
 
         toaster.create({
             title: "Success",
-            description: "Product successfully deleted",
+            description: "Product has been successfully deleted",
             status: "success",
             duration: 5000,
             type: "success",

@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { useProductStore } from '../stores/useProductStore'
 import ProductCard from '../components/ProductCard';
+import { Toaster } from "@/components/ui/toaster"
+
 
 const HomePage = () => {
 
@@ -15,6 +17,7 @@ const HomePage = () => {
 
   return (
     <Container maxW='container.xl' py={12}>
+      <Toaster />
       <VStack spacing={8}>
         <Text
           fontSize='3xl'
