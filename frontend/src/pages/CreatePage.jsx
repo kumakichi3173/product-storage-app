@@ -27,7 +27,7 @@ const CreatePage = () => {
             } else {
                 toaster.create({
                     title: "Success",
-                    description: "Data has been successfully updated",
+                    description: "Product has been successfully created",
                     status: "success",
                     duration: 5000,
                     type: "success",
