@@ -28,7 +28,6 @@ const ProductCard = ({ id, image, name, price }) => {
                         <IconButton
                             onClick={() => handleEditProduct(id)}
                             aria-label="Edit"
-                            fontSize="20px"
                             variant="ghost"
                         >
                             <FiEdit />
@@ -37,7 +36,6 @@ const ProductCard = ({ id, image, name, price }) => {
                             onClick={() => handleDeleteProduct(id)}
                             aria-label="Delete"
                             variant="ghost"
-                            fontSize="20px"
                         >
                             <MdDelete />
                         </IconButton>
