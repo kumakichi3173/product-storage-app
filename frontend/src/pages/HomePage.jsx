@@ -1,19 +1,37 @@
 import { Container, SimpleGrid, Text, VStack } from '@chakra-ui/react'
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useProductStore } from '../stores/useProductStore'
 import ProductCard from '../components/ProductCard';
 import { Toaster } from "@/components/ui/toaster"
-
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter
+} from '@chakra-ui/modal';
+import { Button } from '@chakra-ui/react';
+import { useDisclosure } from '@chakra-ui/react';
 
 const HomePage = () => {
 
   const { products, fetchProducts } = useProductStore();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const handleEditClick = (product) => {
+    console.log("🟡 モーダルを開きます:", product);
+
+    setSelectedProduct(product);
+    onOpen();
+  };
 
   useEffect(() => {
     fetchProducts();
-  }, [fetchProducts]);
-  console.log("products", products)
+  }, []);
 
   return (
     <Container maxW='container.xl' py={12}>
@@ -37,6 +55,7 @@ const HomePage = () => {
               image={product.image}
               name={product.name}
               price={product.price}
+              onEditClick={handleEditClick}
             />
           ))}
         </SimpleGrid>
@@ -51,6 +70,19 @@ const HomePage = () => {
           </Text>
         )}
       </VStack>
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+        <ModalOverlay />
+        <ModalContent zIndex={9999} bg="white" p={6} borderRadius="md" maxW="lg" boxShadow="xl">
+          <ModalHeader>{selectedProduct?.name}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text>Price: ${selectedProduct?.price}</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Container>
   )
 }
