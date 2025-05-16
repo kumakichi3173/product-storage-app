@@ -23,7 +23,7 @@ const HomePage = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleEditClick = (product) => {
-    console.log("🟡 モーダルを開きます:", product);
+    console.log(" handleEditClick is triggered as expected :", product);
 
     setSelectedProduct(product);
     onOpen();
