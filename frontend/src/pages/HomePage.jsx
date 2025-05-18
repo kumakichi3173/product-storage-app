@@ -4,17 +4,7 @@ import { Link } from 'react-router-dom'
 import { useProductStore } from '../stores/useProductStore'
 import ProductCard from '../components/ProductCard';
 import { Toaster } from "@/components/ui/toaster"
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter
-} from '@chakra-ui/modal';
-import { Button } from '@chakra-ui/react';
-import { useDisclosure } from '@chakra-ui/react';
+import { useDisclosure } from '@chakra-ui/react'
 
 const HomePage = () => {
 
@@ -51,7 +41,8 @@ const HomePage = () => {
           {products.map((product) => (
             <ProductCard
               key={product._id}
-              id={product._id} //key cannot be referenced, which is why this exists separately
+              //key cannot be referenced, which is why this exists separately
+              id={product._id}
               image={product.image}
               name={product.name}
               price={product.price}
@@ -70,19 +61,6 @@ const HomePage = () => {
           </Text>
         )}
       </VStack>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
-        <ModalOverlay />
-        <ModalContent zIndex={9999} bg="white" p={6} borderRadius="md" maxW="lg" boxShadow="xl">
-          <ModalHeader>{selectedProduct?.name}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text>Price: ${selectedProduct?.price}</Text>
-          </ModalBody>
-          <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
     </Container>
   )
 }
