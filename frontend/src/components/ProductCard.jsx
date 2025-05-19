@@ -12,7 +12,6 @@ const ProductCard = ({ id, image, name, price, onEditClick, onEditSubmit, onDele
     const textColor = useColorModeValue('gray.600', 'gray.200');
 
     useEffect(() => {
-        console.log(" ProductCard rendered: ", id);
     }, []);
 
     const [updatedProduct, setUpdatedProduct] = useState({ image, name, price });
