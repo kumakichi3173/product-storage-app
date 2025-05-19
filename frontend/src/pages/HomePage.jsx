@@ -5,10 +5,11 @@ import { useProductStore } from '../stores/useProductStore'
 import ProductCard from '../components/ProductCard';
 import { Toaster } from "@/components/ui/toaster"
 import { useDisclosure } from '@chakra-ui/react'
+import { updateProduct } from '../stores/updateProduct';
 
 const HomePage = () => {
 
-  const { products, fetchProducts } = useProductStore();
+  const { products, fetchProducts, setProducts } = useProductStore();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -17,6 +18,17 @@ const HomePage = () => {
 
     setSelectedProduct(product);
     onOpen();
+  };
+
+  const handleUpdateProduct = async (id, updatedProduct) => {
+    const result = await updateProduct(id, updatedProduct);
+    if (result.success) {
+      setProducts((prev) =>
+        prev.map((product) =>
+          product._id === id ? { ...product, ...updatedProduct, _id: product._id } : product
+        )
+      );
+    }
   };
 
   useEffect(() => {
@@ -38,17 +50,22 @@ const HomePage = () => {
           columns={{ base: 1, md: 2, lg: 3 }}
           w={"full"}
         >
-          {products.map((product) => (
-            <ProductCard
-              key={product._id}
-              //key cannot be referenced, which is why this exists separately
-              id={product._id}
-              image={product.image}
-              name={product.name}
-              price={product.price}
-              onEditClick={handleEditClick}
-            />
-          ))}
+          {products.map((product, index) => {
+            console.log("🔍 product in map:", product);
+
+            return (
+              <ProductCard
+                key={product._id}
+                //key cannot be referenced, which is why this exists separately
+                id={product._id}
+                image={product.image}
+                name={product.name}
+                price={product.price}
+                onEditClick={handleEditClick}
+                onEditSubmit={handleUpdateProduct}
+              />
+            );
+          })}
         </SimpleGrid>
         {products.length === 0 && (
           <Text fontSize='xl' textAlign={"center"} fontWeight='bold' color='gray.500'>

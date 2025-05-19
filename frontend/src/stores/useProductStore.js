@@ -13,5 +13,5 @@ export const useProductStore = () => {
     }
   };
 
-  return { products, fetchProducts };
+  return { products, setProducts, fetchProducts };
 };
