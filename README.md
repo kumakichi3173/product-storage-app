@@ -8,8 +8,10 @@ This is a simple MERN (MongoDB, Express, React, Node.js) app with a modular and 
 2. [Database](#Database)
 3. [Build Tools](#build-tools)
 4. [UI component library](#ui-component-library)
-5. [Features](#Features)
-6. [Videos](#Videos)
+5. [Deployment](#deployment)
+6. [Features](#Features)
+7. [Website](#Website)
+8. [Videos](#Videos)
 
 ## Web Framework
 
@@ -27,6 +29,10 @@ This is a simple MERN (MongoDB, Express, React, Node.js) app with a modular and 
 
 - **Chakra UI**
 
+## Deployment
+
+- **Render**
+
 ## Features
 
 - **Create Products:**  
@@ -43,6 +49,9 @@ This is a simple MERN (MongoDB, Express, React, Node.js) app with a modular and 
 
 ![Dark Mode](./docs/img/dark-mode.png)
 ![Light Mode](./docs/img/light-mode.png)
+
+## Website
+[https://product-storage-app.onrender.com/](https://product-storage-app.onrender.com/)
 
 ## Videos
 
