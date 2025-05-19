@@ -1,3 +1,5 @@
+import { toaster } from "@/components/ui/toaster";
+
 export const updateProduct = async (id, updatedProduct) => {
   try {
     const res = await fetch(`/api/products/${id}`, {
@@ -10,12 +12,27 @@ export const updateProduct = async (id, updatedProduct) => {
 
     const data = await res.json();
     if (!data.success) {
-      return { success: false, message: data.message };
+      toaster.create({
+        title: "Error",
+        description: "Failed to update the product",
+        status: "error",
+        duration: 5000,
+        type: "error",
+        isClosable: true,
+      });
+      return;
     }
 
-    return { success: true, data: data.data };
-  } catch (err) {
-    console.error("Failed to update product", err);
-    return { success: false, message: "An error occurred" };
+    toaster.create({
+      title: "Success",
+      description: "Product has been successfully updated",
+      status: "success",
+      duration: 5000,
+      type: "success",
+      isClosable: true,
+    });
+    return;
+  } catch (error) {
+    console.error(error);
   }
 };
