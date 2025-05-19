@@ -8,7 +8,7 @@ import { Dialog } from "@chakra-ui/react"
 import { Portal } from '@chakra-ui/react';
 import { CloseButton } from '@chakra-ui/react';
 
-const ProductCard = ({ id, image, name, price, onEditClick, onEditSubmit }) => {
+const ProductCard = ({ id, image, name, price, onEditClick, onEditSubmit, onDelete }) => {
     const textColor = useColorModeValue('gray.600', 'gray.200');
 
     useEffect(() => {
@@ -16,10 +16,6 @@ const ProductCard = ({ id, image, name, price, onEditClick, onEditSubmit }) => {
     }, []);
 
     const [updatedProduct, setUpdatedProduct] = useState({ image, name, price });
-
-    const handleDeleteProduct = async (id) => {
-        await deleteProduct(id);
-    };
 
     return (
         <>
@@ -104,7 +100,7 @@ const ProductCard = ({ id, image, name, price, onEditClick, onEditSubmit }) => {
                                 </Portal>
                             </Dialog.Root>
                             <IconButton
-                                onClick={() => handleDeleteProduct(id)}
+                                onClick={() => onDelete(id)}
                                 aria-label="Delete"
                                 variant="ghost"
                             >

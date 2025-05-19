@@ -6,6 +6,7 @@ import ProductCard from '../components/ProductCard';
 import { Toaster } from "@/components/ui/toaster"
 import { useDisclosure } from '@chakra-ui/react'
 import { updateProduct } from '../stores/updateProduct';
+import { deleteProduct } from '../stores/deleteProduct';
 
 const HomePage = () => {
 
@@ -31,6 +32,11 @@ const HomePage = () => {
     }
   };
 
+  const handleDeleteProduct = async (id) => {
+    await deleteProduct(id);
+    setProducts((prev) => prev.filter((product) => product._id !== id));
+  };
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -51,8 +57,6 @@ const HomePage = () => {
           w={"full"}
         >
           {products.map((product, index) => {
-            console.log("🔍 product in map:", product);
-
             return (
               <ProductCard
                 key={product._id}
@@ -63,6 +67,7 @@ const HomePage = () => {
                 price={product.price}
                 onEditClick={handleEditClick}
                 onEditSubmit={handleUpdateProduct}
+                onDelete={handleDeleteProduct}
               />
             );
           })}
