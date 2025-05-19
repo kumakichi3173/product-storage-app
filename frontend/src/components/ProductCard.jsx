@@ -74,22 +74,24 @@ const ProductCard = ({ id, image, name, price, onEditClick, onEditSubmit, onDele
                                                 </Container >
                                             </Dialog.Body>
                                             <Dialog.Footer>
-                                                <Dialog.ActionTrigger asChild>
-                                                    <Button variant="outline">Cancel</Button>
-                                                </Dialog.ActionTrigger>
-                                                <Button
-                                                    onClick={async () => {
-                                                        await onEditSubmit(id, updatedProduct);
-                                                        document.activeElement?.blur();
-                                                        const dialog = document.querySelector('[role="dialog"]');
-                                                        if (dialog) {
-                                                            const closeTrigger = dialog.querySelector('[data-part="close-trigger"]');
-                                                            closeTrigger?.click();
-                                                        }
-                                                    }}
-                                                >
-                                                    Save
-                                                </Button>
+                                                <HStack justifyContent="center" width="100%">
+                                                    <Dialog.ActionTrigger asChild>
+                                                        <Button variant="outline">Cancel</Button>
+                                                    </Dialog.ActionTrigger>
+                                                    <Button
+                                                        onClick={async () => {
+                                                            await onEditSubmit(id, updatedProduct);
+                                                            document.activeElement?.blur();
+                                                            const dialog = document.querySelector('[role="dialog"]');
+                                                            if (dialog) {
+                                                                const closeTrigger = dialog.querySelector('[data-part="close-trigger"]');
+                                                                closeTrigger?.click();
+                                                            }
+                                                        }}
+                                                    >
+                                                        Save
+                                                    </Button>
+                                                </HStack>
                                             </Dialog.Footer>
                                             <Dialog.CloseTrigger asChild>
                                                 <CloseButton size="sm" />

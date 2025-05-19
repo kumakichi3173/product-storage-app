@@ -57,13 +57,13 @@ const CreatePage = () => {
     };
 
     return (
-        <Container maxW={"container.sm"}>
+        <Container maxW={{ base: "100%", xl: "940px" }} pt={12}>
             <Toaster />
             <VStack
                 spacing={8}
             >
-                <Heading as="h1" fontSize='3xl' textAlign="center" mb={8} fontWeight={"bold"}>
-                    Create New Product
+                <Heading as="h1" fontSize='4xl' textAlign="center" mb={8} fontWeight={"bold"}>
+                    ⚜️Create New Product⚜️
                 </Heading>
                 <Box
                     w="full"
@@ -71,33 +71,33 @@ const CreatePage = () => {
                     p={6}
                     rounded="lg"
                     shadow='lg'
-                    >
+                >
                     <VStack spacing={4}>
                         <Input
+                            width="98%"
                             placeholder='Product Name'
                             name='name'
                             value={newProduct.name}
                             onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-                        // autoComplete="off"
                         />
                         <Input
+                            width="98%"
                             placeholder='Price'
                             name='price'
                             value={newProduct.price}
                             onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
-                        // autoComplete="off"
                         />
                         <Input
+                            width="98%"
                             placeholder='Image URL'
                             name='image'
                             value={newProduct.image}
                             onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
-                        // autoComplete="off"
                         />
                         <Button
                             colorScheme='blue'
                             onClick={handleAddProduct}
-                            w='full'
+                            w='fit-content'
                             bg={useColorModeValue("black", "gray.300")}
                         >
                             Add Product
