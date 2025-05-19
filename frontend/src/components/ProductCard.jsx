@@ -78,19 +78,15 @@ const ProductCard = ({ id, image, name, price, onEditClick, onEditSubmit, onDele
                                                     <Dialog.ActionTrigger asChild>
                                                         <Button variant="outline">Cancel</Button>
                                                     </Dialog.ActionTrigger>
-                                                    <Button
-                                                        onClick={async () => {
-                                                            await onEditSubmit(id, updatedProduct);
-                                                            document.activeElement?.blur();
-                                                            const dialog = document.querySelector('[role="dialog"]');
-                                                            if (dialog) {
-                                                                const closeTrigger = dialog.querySelector('[data-part="close-trigger"]');
-                                                                closeTrigger?.click();
-                                                            }
-                                                        }}
-                                                    >
-                                                        Save
-                                                    </Button>
+                                                    <Dialog.ActionTrigger asChild>
+                                                        <Button
+                                                            onClick={async () => {
+                                                                await onEditSubmit(id, updatedProduct);
+                                                            }}
+                                                        >
+                                                            Save
+                                                        </Button>
+                                                    </Dialog.ActionTrigger>
                                                 </HStack>
                                             </Dialog.Footer>
                                             <Dialog.CloseTrigger asChild>
