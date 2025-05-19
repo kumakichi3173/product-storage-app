@@ -48,11 +48,9 @@ const CreatePage = () => {
 
             if (!res.ok) {
                 const errorText = await res.text();
-                console.error("Server returned error:", res.status, errorText);
                 throw new Error("Server error");
             }
         } catch (error) {
-            console.error(error)
         }
     };
 

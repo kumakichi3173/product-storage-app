@@ -31,6 +31,5 @@ export const updateProduct = async (id, updatedProduct) => {
       isClosable: true,
     });
   } catch (error) {
-    console.error(error);
   }
 };
