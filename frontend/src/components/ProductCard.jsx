@@ -8,7 +8,7 @@ import { Dialog } from "@chakra-ui/react"
 import { Portal } from '@chakra-ui/react';
 import { CloseButton } from '@chakra-ui/react';
 
-const ProductCard = ({ id, image, name, price, onEditClick }) => {
+const ProductCard = ({ id, image, name, price, onEditClick, onEditSubmit }) => {
     const textColor = useColorModeValue('gray.600', 'gray.200');
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const ProductCard = ({ id, image, name, price, onEditClick }) => {
     }, []);
 
     const [updatedProduct, setUpdatedProduct] = useState({ image, name, price });
-    
+
     const handleDeleteProduct = async (id) => {
         await deleteProduct(id);
     };
@@ -56,33 +56,45 @@ const ProductCard = ({ id, image, name, price, onEditClick }) => {
                                             <Dialog.Title as="h1" fontSize='2xl' textAlign="center" mb={8} fontWeight={"bold"}>Update Product</Dialog.Title>
                                             <Dialog.Body>
                                                 <Container maxW={"container.sm"}>
-                                                        <VStack spacing={4}>
-                                                            <Input
-                                                                placeholder='Product Name'
-                                                                name='name'
-                                                                value={updatedProduct.name}
-                                                                onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-                                                            />
-                                                            <Input
-                                                                placeholder='Price'
-                                                                name='price'
-                                                                value={updatedProduct.price}
-                                                                onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
-                                                            />
-                                                            <Input
-                                                                placeholder='Image URL'
-                                                                name='image'
-                                                                value={updatedProduct.image}
-                                                                onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
-                                                            />
-                                                        </VStack>
+                                                    <VStack spacing={4}>
+                                                        <Input
+                                                            placeholder='Product Name'
+                                                            name='name'
+                                                            value={updatedProduct.name}
+                                                            onChange={(e) => setUpdatedProduct({ ...updatedProduct, name: e.target.value })}
+                                                        />
+                                                        <Input
+                                                            placeholder='Price'
+                                                            name='price'
+                                                            value={updatedProduct.price}
+                                                            onChange={(e) => setUpdatedProduct({ ...updatedProduct, price: e.target.value })}
+                                                        />
+                                                        <Input
+                                                            placeholder='Image URL'
+                                                            name='image'
+                                                            value={updatedProduct.image}
+                                                            onChange={(e) => setUpdatedProduct({ ...updatedProduct, image: e.target.value })}
+                                                        />
+                                                    </VStack>
                                                 </Container >
                                             </Dialog.Body>
                                             <Dialog.Footer>
                                                 <Dialog.ActionTrigger asChild>
                                                     <Button variant="outline">Cancel</Button>
                                                 </Dialog.ActionTrigger>
-                                                <Button>Save</Button>
+                                                <Button
+                                                    onClick={async () => {
+                                                        await onEditSubmit(id, updatedProduct);
+                                                        document.activeElement?.blur();
+                                                        const dialog = document.querySelector('[role="dialog"]');
+                                                        if (dialog) {
+                                                            const closeTrigger = dialog.querySelector('[data-part="close-trigger"]');
+                                                            closeTrigger?.click();
+                                                        }
+                                                    }}
+                                                >
+                                                    Save
+                                                </Button>
                                             </Dialog.Footer>
                                             <Dialog.CloseTrigger asChild>
                                                 <CloseButton size="sm" />
