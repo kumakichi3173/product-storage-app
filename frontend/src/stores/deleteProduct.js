@@ -23,7 +23,6 @@ export const deleteProduct = async (id) => {
 
         if (!res.ok) {
             const errorText = await res.text();
-            console.error("Server returned error:", res.status, errorText);
             throw new Error("Server error");
         }
 
@@ -36,6 +35,5 @@ export const deleteProduct = async (id) => {
             isClosable: true,
         });
     } catch (error) {
-        console.error(error);
     }
 };

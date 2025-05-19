@@ -9,9 +9,8 @@ export const useProductStore = () => {
       const data = await res.json();
       setProducts(data.data);
     } catch (err) {
-      console.error("Failed to fetch products", err);
     }
   };
 
-  return { products, fetchProducts };
+  return { products, setProducts, fetchProducts };
 };

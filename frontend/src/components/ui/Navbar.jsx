@@ -1,5 +1,5 @@
 import { Button, Container, Flex, HStack, Text } from '@chakra-ui/react';
-import { IoMoon } from 'react-icons/io5';
+import { useColorModeValue } from './color-mode';import { IoMoon } from 'react-icons/io5';
 import { LuSun } from 'react-icons/lu';
 import { PiPlus } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
@@ -9,7 +9,7 @@ const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   
   return (
-    <Container maxW={"1140PX"} px={4}>
+    <Container maxW={"1140PX"} px={4} bg={useColorModeValue("gray.100", "gray.900")}>
       <Flex h={16}
         alignItems={"center"}
         justifyContent={"space-between"}
@@ -19,15 +19,12 @@ const Navbar = () => {
         }}
       >
         <Text
-          color="white"
+          color={useColorModeValue("black", "white")}
           fontSize={{ base: "22px", sm: "32px" }}
-          fontWeight={"bold"}
           textTransform={"uppercase"}
           textAlign={"center"}
-          bgGradient="to-r" gradientFrom="purple.700" gradientTo="pink.500"
-          bgClip={"text"}
         >
-          <Link to={"/"}>✨Product Storage✨</Link>
+          <Link to={"/"}>Product Storage</Link>
         </Text>
         <HStack spacing={2} alignItem={"center"}>
           <Link to={"/create"}>
