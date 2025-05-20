@@ -13,6 +13,7 @@ const HomePage = () => {
   const { products, fetchProducts, setProducts } = useProductStore();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [formError, setFormError] = useState("");
 
   const handleEditClick = (product) => {
     setSelectedProduct(product);
@@ -20,13 +21,29 @@ const HomePage = () => {
   };
 
   const handleUpdateProduct = async (id, updatedProduct) => {
+    const isUnchanged =
+      updatedProduct.name === selectedProduct.name &&
+      updatedProduct.price === selectedProduct.price &&
+      updatedProduct.image === selectedProduct.image;
+
+    if (isUnchanged) {
+      setFormError("Nothing has been modified.");
+      return;
+    }
+
+    setFormError("");
+
     const result = await updateProduct(id, updatedProduct);
-    if (result.success) {
+    if (result && result.success) {
       setProducts((prev) =>
         prev.map((product) =>
           product._id === id ? { ...product, ...updatedProduct, _id: product._id } : product
         )
       );
+      onClose();
+      return result;
+    } else {
+      return result;
     }
   };
 
@@ -64,6 +81,7 @@ const HomePage = () => {
                 onEditClick={handleEditClick}
                 onEditSubmit={handleUpdateProduct}
                 onDelete={handleDeleteProduct}
+                formError={formError}
               />
             );
           })}
