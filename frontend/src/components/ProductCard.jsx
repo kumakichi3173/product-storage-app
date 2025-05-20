@@ -96,6 +96,16 @@ const ProductCard = ({ id, image, name, price, onEditClick, onEditSubmit, onDele
                                                 </Button>
                                                     <Button
                                                         onClick={async () => {
+                                                          const isEmpty =
+                                                            updatedProduct.name.trim() === "" ||
+                                                            updatedProduct.price.toString().trim() === "" ||
+                                                            updatedProduct.image.trim() === "";
+
+                                                          if (isEmpty) {
+                                                            setLocalError("No input provided. Please fill in all fields.");
+                                                            return;
+                                                          }
+
                                                           const isUnchanged =
                                                             updatedProduct.name === name &&
                                                             updatedProduct.price === price &&
