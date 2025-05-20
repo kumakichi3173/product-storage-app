@@ -20,6 +20,7 @@ export const updateProduct = async (id, updatedProduct) => {
         type: "error",
         isClosable: true,
       });
+      return { success: false, message: data.message };
     }
 
     toaster.create({
@@ -30,6 +31,8 @@ export const updateProduct = async (id, updatedProduct) => {
       type: "success",
       isClosable: true,
     });
+
+    return { success: true, data };
   } catch (error) {
   }
 };

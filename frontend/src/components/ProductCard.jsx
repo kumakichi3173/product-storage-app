@@ -3,18 +3,19 @@ import { useEffect, useState } from 'react';
 import { FiEdit } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import { useColorModeValue } from '../components/ui/color-mode';
-import { deleteProduct } from '../stores/deleteProduct';
 import { Dialog } from "@chakra-ui/react"
 import { Portal } from '@chakra-ui/react';
 import { CloseButton } from '@chakra-ui/react';
 
-const ProductCard = ({ id, image, name, price, onEditClick, onEditSubmit, onDelete }) => {
+const ProductCard = ({ id, image, name, price, onEditClick, onEditSubmit, onDelete, formError }) => {
     const textColor = useColorModeValue('gray.600', 'gray.200');
 
     useEffect(() => {
     }, []);
 
     const [updatedProduct, setUpdatedProduct] = useState({ image, name, price });
+    const [localError, setLocalError] = useState("");
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     return (
         <>
@@ -32,10 +33,12 @@ const ProductCard = ({ id, image, name, price, onEditClick, onEditSubmit, onDele
                 >
                     <Box position="absolute" top="2" right="2" zIndex="1">
                         <HStack spacing={1}>
-                            <Dialog.Root>
+                            <Dialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                 <Dialog.Trigger asChild>
                                     <IconButton
-                                        onClick={() => onEditClick({ id, image, name, price })}
+                                        onClick={() => {
+                                            onEditClick({ id, image, name, price });
+                                        }}
                                         aria-label="Edit"
                                         variant="ghost"
                                     >
@@ -49,6 +52,11 @@ const ProductCard = ({ id, image, name, price, onEditClick, onEditSubmit, onDele
                                             <Dialog.Header>
                                             </Dialog.Header>
                                             <Dialog.Title as="h1" fontSize='2xl' textAlign="center" mb={8} fontWeight={"bold"}>Update Product</Dialog.Title>
+                                            {(formError || localError) && (
+                                                <Text color="red.400" fontSize="sm" mb={2} textAlign="center">
+                                                    {formError || localError}
+                                                </Text>
+                                            )}
                                             <Dialog.Body>
                                                 <Container maxW={"container.sm"}>
                                                     <VStack spacing={4}>
@@ -75,23 +83,57 @@ const ProductCard = ({ id, image, name, price, onEditClick, onEditSubmit, onDele
                                             </Dialog.Body>
                                             <Dialog.Footer>
                                                 <HStack justifyContent="center" width="100%">
-                                                    <Dialog.ActionTrigger asChild>
-                                                        <Button variant="outline">Cancel</Button>
-                                                    </Dialog.ActionTrigger>
-                                                    <Dialog.ActionTrigger asChild>
-                                                        <Button
-                                                            onClick={async () => {
-                                                                await onEditSubmit(id, updatedProduct);
-                                                            }}
-                                                        >
-                                                            Save
-                                                        </Button>
-                                                    </Dialog.ActionTrigger>
+                                                <Button
+                                                    variant="outline"
+                                                    onClick={() => {
+                                                        setTimeout(() => {
+                                                            setLocalError("");
+                                                        }, 0);
+                                                        setIsDialogOpen(false); // Close dialog on Cancel
+                                                    }}
+                                                >
+                                                    Cancel
+                                                </Button>
+                                                    <Button
+                                                        onClick={async () => {
+                                                          const isUnchanged =
+                                                            updatedProduct.name === name &&
+                                                            updatedProduct.price === price &&
+                                                            updatedProduct.image === image;
+
+                                                          if (isUnchanged) {
+                                                            setLocalError("Nothing has been modified!");
+                                                            return;
+                                                          }
+
+                                                          setLocalError(""); // Clear any previous errors
+                                                          const result = await onEditSubmit(id, updatedProduct);
+
+                                                          if (result?.success) {
+                                                            setIsDialogOpen(false); // Close dialog only on successful update
+                                                            setTimeout(() => {
+                                                              document.activeElement?.blur();
+                                                            }, 0);
+                                                          }
+                                                        }}
+                                
+                                                    >
+                                                        Save
+                                                    </Button>
                                                 </HStack>
                                             </Dialog.Footer>
-                                            <Dialog.CloseTrigger asChild>
+                                            <Box
+                                                as="button"
+                                                position="absolute"
+                                                top="2"
+                                                right="2"
+                                                onClick={() => {
+                                                    setLocalError("");
+                                                    setIsDialogOpen(false); // Close dialog on CloseButton
+                                                }}
+                                            >
                                                 <CloseButton size="sm" />
-                                            </Dialog.CloseTrigger>
+                                            </Box>
                                         </Dialog.Content>
                                     </Dialog.Positioner>
                                 </Portal>
