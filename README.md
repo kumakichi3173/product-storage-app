@@ -11,7 +11,6 @@ This is a simple MERN (MongoDB, Express, React, Node.js) app with a modular and 
 5. [Deployment](#deployment)
 6. [Features](#Features)
 7. [Website](#Website)
-8. [Videos](#Videos)
 
 ## Web Framework
 
@@ -52,7 +51,4 @@ This is a simple MERN (MongoDB, Express, React, Node.js) app with a modular and 
 
 ## Website
 [https://product-storage-app.onrender.com/](https://product-storage-app.onrender.com/)
-
-## Videos
-
 
